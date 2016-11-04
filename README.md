@@ -1,4 +1,4 @@
-# Musical_skins
+# Musical skins
 ## Music software for the eTextile matrix sensor
 
 ## Project content
