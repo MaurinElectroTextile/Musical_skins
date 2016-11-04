@@ -1,0 +1,16 @@
+R R V R T V P R S T U V W P Q R;
+R R V R T V P R S T U V W P Q R;
+V V R V P R P V W P Q R S T U V;
+R R V R T V P R S T U V W P O R;
+P P T P R T V P Q R S T U V W P;
+V V R V P R T V W P Q R S T U V;
+T T P T V P R T U C W P Q R S T;
+R R V R T V P R S T U V W P Q R;
+Q Q U Q S U P Q R S T U V W P Q;
+P P T P R T V P Q R S T U V W P;
+W W S W Q S U W P Q R S T U V W;
+V V R V P R T V W P Q R S T U V;
+U U Q U P Q S U V W P Q R S T U;
+T T P T V P R T U V W P Q R S T;
+S S W S U W Q S T U V W P Q R S;
+R R V R T V P R S T U V W P Q R;

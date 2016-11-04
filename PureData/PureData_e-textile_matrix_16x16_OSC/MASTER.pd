@@ -1,0 +1,269 @@
+#N canvas 250 144 910 488 10;
+#X obj 11 263 catch~ signal;
+#X obj 546 24 f;
+#X obj 574 24 + 1;
+#X obj 604 24 % 7;
+#X floatatom 554 46 5 0 0 1 materials - -, f 5;
+#X obj 546 4 bng 15 250 50 0 empty empty empty 17 7 0 10 -4034 -1 -1
+;
+#N canvas 837 516 329 251 volume 0;
+#X obj 157 121 line~;
+#X obj 142 178 *~;
+#X obj 55 179 *~;
+#X obj 55 1 inlet~;
+#X obj 142 1 inlet~;
+#X obj 54 211 outlet~;
+#X obj 143 211 outlet~;
+#X obj 157 79 dbtorms;
+#X obj 157 100 pack 0 50;
+#X obj 157 58 * 200;
+#X obj 157 31 r VOLUME;
+#X connect 0 0 1 1;
+#X connect 0 0 2 1;
+#X connect 1 0 6 0;
+#X connect 2 0 5 0;
+#X connect 3 0 2 0;
+#X connect 4 0 1 0;
+#X connect 7 0 8 0;
+#X connect 8 0 0 0;
+#X connect 9 0 7 0;
+#X connect 10 0 9 0;
+#X restore 11 415 pd volume;
+#X obj 12 445 dac~;
+#X obj 398 25 hsl 100 15 1 100 0 1 ATTACK 1-ATTACK attack 5 7 0 10
+-228856 -1 -1 0 0;
+#X obj 398 46 hsl 100 15 0 100 0 0 DECAY 1-DECAY decay 5 7 0 10 -228856
+-1 -1 693 0;
+#X obj 398 67 hsl 100 15 0 100 0 0 SUSTAIN 1-SUSTAIN sustain 5 7 0
+10 -228856 -1 -1 990 1;
+#X obj 398 89 hsl 100 15 0 100 0 0 RELEASE 1-RELEASE release 5 7 0
+10 -228856 -1 -1 2970 1;
+#X obj 398 110 hsl 100 15 0 4000 0 0 SEG-LENGHT 1-SEGMENT-LENGHT segment_length
+5 7 0 10 -260097 -1 -1 1980 1;
+#X obj 398 131 hsl 100 15 0 1 0 0 ATTACK-LEVEL 1-ATTACK-LEVEL attack_level
+5 7 0 10 -260097 -1 -1 792 1;
+#X obj 398 153 hsl 100 15 0 1 0 0 SUSTAIN-LEVEL 1-SUSTAIN-LEVEL sustain_level
+5 7 0 10 -260097 -1 -1 99 1;
+#X obj 11 31 tgl 15 0 empty empty empty 17 7 0 10 -258113 -1 -1 1 1
+;
+#X floatatom 506 24 5 0 0 0 - ATTACK -, f 5;
+#X floatatom 506 46 5 0 0 0 - DECAY -, f 5;
+#X obj 11 9 loadbang;
+#X floatatom 506 109 5 0 0 0 - SEG-LENGHT -, f 5;
+#X floatatom 506 131 5 0 0 0 - ATTACK-LEVEL -, f 5;
+#X floatatom 506 152 5 0 0 0 - SUSTAIN-LEVEL -, f 5;
+#X floatatom 506 67 5 0 0 0 - SUSTAIN -, f 5;
+#X floatatom 506 88 5 0 0 0 - RELEASE -, f 5;
+#N canvas 141 549 173 218 mode 0;
+#X obj 32 22 inlet;
+#X obj 95 120 pack f 0;
+#X obj 32 120 pack f 1;
+#X obj 32 169 outlet;
+#X obj 32 68 trigger f b;
+#X obj 95 95 f 0;
+#X obj 32 95 f 0;
+#X connect 0 0 4 0;
+#X connect 1 0 3 0;
+#X connect 2 0 3 0;
+#X connect 4 0 6 0;
+#X connect 4 1 5 0;
+#X connect 5 0 1 0;
+#X connect 6 0 2 0;
+#X connect 6 0 5 1;
+#X restore 251 71 pd mode;
+#X msg 12 97 read ./medias/labdomaMapping.txt;
+#X obj 12 75 loadbang;
+#X obj 398 5 hsl 100 15 0 2000 0 0 1-TEMPO 0-TEMPO tempo 5 7 0 10 -4034
+-1 -1 742 0;
+#X floatatom 506 4 5 0 0 0 - 1-TEMPO -, f 5;
+#X msg 290 32 1;
+#X msg 260 32 0;
+#X msg 320 32 2;
+#X obj 12 119 text define -k mapping;
+#A set R R V R T V P R S T U V W P Q R \; R R V R T V P R S T U V W
+P Q R \; V V R V P R P V W P Q R S T U V \; R R V R T V P R S T U V
+W P O R \; P P T P R T V P Q R S T U V W P \; V V R V P R T V W P Q
+R S T U V \; T T P T V P R T U C W P Q R S T \; R R V R T V P R S T
+U V W P Q R \; Q Q U Q S U P Q R S T U V W P Q \; P P T P R T V P Q
+R S T U V W P \; W W S W Q S U W P Q R S T U V W \; V V R V P R T V
+W P Q R S T U V \; U U Q U P Q S U V W P Q R S T U \; T T P T V P R
+T U V W P Q R S T \; S S W S U W Q S T U V W P Q R S \; R R V R T V
+P R S T U V W P Q R \;;
+#X obj 11 285 audio_pitchshift 0;
+#X obj 395 264 r 2-PARAMETERS;
+#X obj 395 175 r 0-PARAMETERS;
+#X obj 545 226 r 1-PARAMETERS;
+#X obj 251 9 r MODE;
+#X msg 546 70 \; 1-MATERIALS \$1;
+#X msg 546 105 \; 1-SLOPE 3000;
+#X msg 251 92 \; \$1-SYNTH_ON_OFF \$2 \; \$1-PARAMETERS bang;
+#X msg 546 249 \; 0-SHIFTING 0 \; 0-WINDOW 100 \; 0-TEMPO 150 \; 1-TRANSPOSITION
+0 \; 1-MATERIALS 5 \; 1-ATTACK 0 \; 1-DECAY 7 \; 1-SUSTAIN 10 \; 1-RELEASE
+30 \; 1-SEGMENT-LENGHT 800 \; 1-ATTACK-LEVEL 0.08 \; 1-SUSTAIN-LEVEL
+0.01;
+#X msg 706 249 \; 0-SHIFTING -20 \; 0-WINDOW 400 \; 0-TEMPO 26 \; 1-TRANSPOSITION
+30 \; 1-MATERIALS 4 \; 1-ATTACK 0 \; 1-DECAY 3 \; 1-SUSTAIN 60 \; 1-RELEASE
+8 \; 1-SEGMENT-LENGHT 200 \; 1-ATTACK-LEVEL 0.02 \; 1-SUSTAIN-LEVEL
+0;
+#X msg 706 69 \; 0-SHIFTING -10 \; 0-WINDOW 400 \; 0-TEMPO 32 \; 1-TRANSPOSITION
+0 \; 1-MATERIALS 5 \; 1-ATTACK 0 \; 1-DECAY 14 \; 1-SUSTAIN 10 \; 1-RELEASE
+27 \; 1-SEGMENT-LENGHT 1000 \; 1-ATTACK-LEVEL 0.02 \; 1-SUSTAIN-LEVEL
+0;
+#X obj 212 228 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X floatatom 12 223 5 0 0 0 - - -, f 5;
+#N canvas 1 56 450 300 synth_state_summ 0;
+#X obj 32 17 r 0-STATE;
+#X obj 47 40 r 1-STATE;
+#X obj 47 62 t b f;
+#X obj 32 255 outlet;
+#X obj 89 82 t b f;
+#X obj 132 102 t b f;
+#X obj 174 122 t b f;
+#X obj 32 219 expr $f1 + $f2 + $f3 + $f4 + $f5 + $f6 + $f7 + $f8;
+#X obj 217 142 t b f;
+#X obj 259 162 t b f;
+#X obj 302 182 t b f;
+#X obj 89 60 r 2-STATE;
+#X obj 132 80 r 3-STATE;
+#X obj 174 100 r 4-STATE;
+#X obj 217 120 r 5-STATE;
+#X obj 259 140 r 6-STATE;
+#X obj 302 160 r 7-STATE;
+#X connect 0 0 7 0;
+#X connect 1 0 2 0;
+#X connect 2 0 7 0;
+#X connect 2 1 7 1;
+#X connect 4 0 7 0;
+#X connect 4 1 7 2;
+#X connect 5 0 7 0;
+#X connect 5 1 7 3;
+#X connect 6 0 7 0;
+#X connect 6 1 7 4;
+#X connect 7 0 3 0;
+#X connect 8 0 7 0;
+#X connect 8 1 7 5;
+#X connect 9 0 7 0;
+#X connect 9 1 7 6;
+#X connect 10 0 7 0;
+#X connect 10 1 7 7;
+#X connect 11 0 4 0;
+#X connect 12 0 5 0;
+#X connect 13 0 6 0;
+#X connect 14 0 8 0;
+#X connect 15 0 9 0;
+#X connect 16 0 10 0;
+#X restore 12 202 pd synth_state_summ;
+#X obj 12 241 s SYNTH_SUMM;
+#X obj 12 141 clone 8 synth_gaga 0;
+#X obj 229 228 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X msg 229 400 \; 2-MIDI \$1;
+#X floatatom 248 345 5 0 0 0 - - -, f 5;
+#X msg 212 366 \; 2-TRANSPOSITION \$1;
+#X floatatom 176 367 5 0 0 0 - - -, f 5;
+#X obj 12 161 clone 8 synth_xylo 1;
+#N canvas 1 56 450 300 INIT 0;
+#X obj 161 94 loadbang;
+#X msg 161 118 \; MODE 1 \; VOLUME 0.8 \; pd dsp 1;
+#X connect 0 0 1 0;
+#X restore 79 9 pd INIT;
+#X obj 12 181 clone 8 synth_moog 2;
+#X msg 395 287 \; 0-SHIFTING -20 \; 0-WINDOW 90 \; 2-TRANSPOSITION
+60 \; 2-MIDI 45;
+#X obj 12 389 freeverb~;
+#N canvas 639 120 613 636 freeverb 0;
+#X msg 25 67 roomsize \$1;
+#X msg 125 67 damping \$1;
+#X msg 225 67 width \$1;
+#X msg 325 67 wet \$1;
+#X msg 425 67 dry \$1;
+#X msg 423 288 bypass \$1;
+#X obj 423 269 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
+1;
+#X obj 437 44 hsl 60 18 0 1 0 1 empty empty dry 2 9 1 12 -225271 -1
+-1 2700 0;
+#X obj 337 44 hsl 60 18 0 1 0 1 empty empty wet 2 9 1 12 -225271 -1
+-1 2600 0;
+#X obj 237 44 hsl 60 18 0 1 0 1 empty empty width 2 9 1 12 -262131
+-1 -1 2900 0;
+#X obj 137 44 hsl 60 18 0 2 0 1 empty empty damping 2 9 1 12 -261689
+-1 -1 1900 0;
+#X obj 37 44 hsl 60 18 0.11 1.1 0 1 empty empty roomsize 2 9 1 12 -261689
+-1 -1 1700 0;
+#X floatatom 7 48 3 0 0 0 - - -, f 3;
+#X floatatom 107 48 3 0 0 0 - - -, f 3;
+#X floatatom 207 49 3 0 0 0 - - -, f 3;
+#X floatatom 307 48 3 0 0 0 - - -, f 3;
+#X floatatom 407 48 3 0 0 0 - - -, f 3;
+#X obj 24 570 s CONTROL;
+#X msg 45 167 roomsize 0.7;
+#X msg 145 167 damping 0.9;
+#X msg 245 168 width 0.7;
+#X msg 345 167 wet 0.1;
+#X msg 445 167 dry 1;
+#X obj 80 93 loadbang;
+#X connect 0 0 17 0;
+#X connect 1 0 17 0;
+#X connect 2 0 17 0;
+#X connect 3 0 17 0;
+#X connect 4 0 17 0;
+#X connect 5 0 17 0;
+#X connect 6 0 5 0;
+#X connect 7 0 4 0;
+#X connect 7 0 16 0;
+#X connect 8 0 3 0;
+#X connect 8 0 15 0;
+#X connect 9 0 2 0;
+#X connect 9 0 14 0;
+#X connect 10 0 1 0;
+#X connect 10 0 13 0;
+#X connect 11 0 0 0;
+#X connect 11 0 12 0;
+#X connect 18 0 17 0;
+#X connect 19 0 17 0;
+#X connect 20 0 17 0;
+#X connect 21 0 17 0;
+#X connect 22 0 17 0;
+#X connect 23 0 18 0;
+#X connect 23 0 19 0;
+#X connect 23 0 20 0;
+#X connect 23 0 21 0;
+#X connect 23 0 22 0;
+#X restore 86 389 pd freeverb;
+#X obj 74 350 r CONTROL;
+#X obj 11 52 osc_input 7771;
+#X msg 395 198 \; 0-SHIFTING 0 \; 0-WINDOW 0 \; 1-TRANSPOSITION 0 \;
+;
+#X connect 0 0 33 0;
+#X connect 1 0 4 0;
+#X connect 1 0 2 0;
+#X connect 1 0 38 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 1;
+#X connect 5 0 1 0;
+#X connect 6 0 7 0;
+#X connect 6 1 7 1;
+#X connect 15 0 61 0;
+#X connect 18 0 15 0;
+#X connect 24 0 40 0;
+#X connect 25 0 32 0;
+#X connect 26 0 25 0;
+#X connect 29 0 24 0;
+#X connect 30 0 24 0;
+#X connect 31 0 24 0;
+#X connect 33 0 58 0;
+#X connect 33 0 58 1;
+#X connect 34 0 57 0;
+#X connect 35 0 62 0;
+#X connect 36 0 41 0;
+#X connect 37 0 24 0;
+#X connect 44 0 52 0;
+#X connect 44 0 53 0;
+#X connect 45 0 47 0;
+#X connect 46 0 45 0;
+#X connect 49 0 50 0;
+#X connect 49 0 51 0;
+#X connect 58 0 6 0;
+#X connect 58 1 6 1;
+#X connect 60 0 58 0;

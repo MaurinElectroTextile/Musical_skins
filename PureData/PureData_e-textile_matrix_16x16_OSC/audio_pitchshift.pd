@@ -1,0 +1,154 @@
+#N canvas 202 54 1073 713 10;
+#X obj 183 518 *~;
+#X obj 406 455 line~;
+#X text 609 136 PITCH SHIFTER;
+#X obj 406 429 pack 0 200;
+#X obj 120 299 exp;
+#X obj 120 419 /;
+#X obj 247 329 * 0.001;
+#X obj 515 525 line~;
+#X obj 515 500 pack 0 200;
+#X floatatom 515 449 0 0 0 0 - - -;
+#X obj 515 423 r delay;
+#X obj 183 544 +~;
+#X obj 120 570 cos~;
+#X obj 120 597 *~;
+#X obj 120 626 +~;
+#X obj 207 477 wrap~;
+#X obj 452 520 *~;
+#X obj 452 553 +~;
+#X obj 389 580 cos~;
+#X obj 389 607 *~;
+#X obj 247 356 t b f;
+#X obj 207 450 +~ 0.5;
+#X obj 120 518 -~ 0.5;
+#X obj 120 544 *~ 0.5;
+#X obj 389 519 -~ 0.5;
+#X obj 389 552 *~ 0.5;
+#X obj 120 321 - 1;
+#X obj 120 277 * 0.05776;
+#X obj 120 343 * -1;
+#X text 183 323 speed;
+#X text 182 337 change;
+#X text 155 412 tape head;
+#X text 610 155 This is a classic rotating-tape-head style pitch shifter
+using the vd~ variable delay object. Ther are two moving tape heads
+\, each of which is loudest at the middle of its trajectory \, and
+enveloped out at the moment it has to jump back (or forward) to start
+another scratch. Most of the brain work is in computing how fast the
+tape heads have to move to get the desired transposition.;
+#X text 610 274 The "window size" is the total trajectory of the read
+points in the delay line \, in milliseconds. The delay times are controlled
+by a phasor~ object. The second delay time \, 180 degrees out of phase
+from the first one \, is computed using the "wrap" object.;
+#X text 608 364 The "window size" is the total trajectory of the read
+points in the delay line \, in milliseconds. The delay times are controlled
+by a phasor~ object. The second delay time \, 180 degrees out of phase
+from the first one \, is computed using the "wrap" object.;
+#X text 607 456 The cos~ objects compute the fadein and fadeout of
+the two delay line outputs. They each traverse the positive half of
+the cosine waveform (phase -0.25 to +0.25) over the time the phase
+goes from one end to the other.;
+#X obj 120 476 phasor~;
+#X text 710 509 updated for Pd version 0.37-1;
+#X obj 515 476 max 1.5;
+#X text 518 382 delay;
+#X text 515 400 (msec);
+#X obj 389 242 max 1;
+#X text 156 425 rotation freq;
+#X obj 12 15 inlet~;
+#X obj 203 52 inlet;
+#X obj 265 53 inlet;
+#X obj 203 104 nbx 3 10 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 9
+-262144 -1 -1 0 256;
+#X obj 203 123 nbx 4 10 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 9
+-262144 -1 -1 100 256;
+#X obj 95 668 outlet~;
+#X obj 183 570 vd~ \$0-pit;
+#X obj 452 582 vd~ \$0-pit;
+#X obj 63 231 delwrite~ \$0-pit 5000;
+#X msg 452 101 100;
+#X obj 317 104 tgl 10 0 empty empty empty 17 7 0 10 -257985 -1 -1 1
+1;
+#N canvas 690 191 450 300 drywet 0;
+#X obj 99 164 *~ 1;
+#X obj 94 135 + 1;
+#X obj 94 110 * -1;
+#X obj 46 166 *~ 0;
+#X obj 34 41 inlet~;
+#X obj 132 50 inlet toggle;
+#X obj 32 218 outlet~ dry;
+#X obj 114 218 outlet~ wet;
+#X connect 0 0 7 0;
+#X connect 1 0 3 1;
+#X connect 2 0 1 0;
+#X connect 3 0 6 0;
+#X connect 4 0 3 0;
+#X connect 4 0 0 0;
+#X connect 5 0 2 0;
+#X connect 5 0 0 1;
+#X restore 11 202 pd drywet;
+#X obj 238 105 cnv 10 10 10 empty empty transposition 0 6 0 8 -262144
+-191407 0;
+#X obj 279 113 cnv 10 10 10 empty empty halftones 0 6 0 6 -262144 -191407
+0;
+#X obj 246 125 cnv 10 10 10 empty empty window_(ms) 0 6 0 8 -262144
+-191407 0;
+#X obj 317 53 loadbang;
+#X obj 452 75 loadbang;
+#X obj 108 52 r 0-SHIFTING;
+#X obj 108 73 r 0-WINDOW;
+#X connect 0 0 11 0;
+#X connect 1 0 0 1;
+#X connect 1 0 16 1;
+#X connect 3 0 1 0;
+#X connect 4 0 26 0;
+#X connect 5 0 36 0;
+#X connect 6 0 20 0;
+#X connect 7 0 11 1;
+#X connect 7 0 17 1;
+#X connect 8 0 7 0;
+#X connect 9 0 38 0;
+#X connect 10 0 9 0;
+#X connect 11 0 49 0;
+#X connect 12 0 13 0;
+#X connect 13 0 14 0;
+#X connect 14 0 48 0;
+#X connect 15 0 16 0;
+#X connect 15 0 24 0;
+#X connect 16 0 17 0;
+#X connect 17 0 50 0;
+#X connect 18 0 19 0;
+#X connect 19 0 14 1;
+#X connect 20 0 5 0;
+#X connect 20 1 5 1;
+#X connect 21 0 15 0;
+#X connect 22 0 23 0;
+#X connect 23 0 12 0;
+#X connect 24 0 25 0;
+#X connect 25 0 18 0;
+#X connect 26 0 28 0;
+#X connect 27 0 4 0;
+#X connect 28 0 5 0;
+#X connect 36 0 0 0;
+#X connect 36 0 22 0;
+#X connect 36 0 21 0;
+#X connect 38 0 8 0;
+#X connect 41 0 6 0;
+#X connect 41 0 3 0;
+#X connect 43 0 54 0;
+#X connect 44 0 46 0;
+#X connect 45 0 47 0;
+#X connect 46 0 27 0;
+#X connect 47 0 41 0;
+#X connect 49 0 13 1;
+#X connect 50 0 19 1;
+#X connect 52 0 47 0;
+#X connect 53 0 54 1;
+#X connect 54 0 48 0;
+#X connect 54 1 51 0;
+#X connect 58 0 53 0;
+#X connect 59 0 52 0;
+#X connect 60 0 46 0;
+#X connect 61 0 47 0;
+#X coords 0 -1 1 1 130 60 1 200 80;
