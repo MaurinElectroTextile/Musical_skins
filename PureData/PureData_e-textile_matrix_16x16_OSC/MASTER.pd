@@ -1,4 +1,4 @@
-#N canvas 250 144 910 488 10;
+#N canvas 397 25 910 488 10;
 #X obj 11 263 catch~ signal;
 #X obj 546 24 f;
 #X obj 574 24 + 1;
@@ -28,8 +28,8 @@
 #X connect 8 0 0 0;
 #X connect 9 0 7 0;
 #X connect 10 0 9 0;
-#X restore 11 415 pd volume;
-#X obj 12 445 dac~;
+#X restore 12 415 pd volume;
+#X obj 13 445 dac~;
 #X obj 398 25 hsl 100 15 1 100 0 1 ATTACK 1-ATTACK attack 5 7 0 10
 -228856 -1 -1 0 0;
 #X obj 398 46 hsl 100 15 0 100 0 0 DECAY 1-DECAY decay 5 7 0 10 -228856
@@ -54,7 +54,7 @@
 #X floatatom 506 152 5 0 0 0 - SUSTAIN-LEVEL -, f 5;
 #X floatatom 506 67 5 0 0 0 - SUSTAIN -, f 5;
 #X floatatom 506 88 5 0 0 0 - RELEASE -, f 5;
-#N canvas 141 549 173 218 mode 0;
+#N canvas 154 379 173 218 mode 0;
 #X obj 32 22 inlet;
 #X obj 95 120 pack f 0;
 #X obj 32 120 pack f 1;
@@ -90,9 +90,9 @@ W P Q R S T U V \; U U Q U P Q S U V W P Q R S T U \; T T P T V P R
 T U V W P Q R S T \; S S W S U W Q S T U V W P Q R S \; R R V R T V
 P R S T U V W P Q R \;;
 #X obj 11 285 audio_pitchshift 0;
-#X obj 395 264 r 2-PARAMETERS;
+#X obj 395 274 r 2-PARAMETERS;
 #X obj 395 175 r 0-PARAMETERS;
-#X obj 545 226 r 1-PARAMETERS;
+#X obj 546 226 r 1-PARAMETERS;
 #X obj 251 9 r MODE;
 #X msg 546 70 \; 1-MATERIALS \$1;
 #X msg 546 105 \; 1-SLOPE 3000;
@@ -110,7 +110,7 @@ P R S T U V W P Q R \;;
 27 \; 1-SEGMENT-LENGHT 1000 \; 1-ATTACK-LEVEL 0.02 \; 1-SUSTAIN-LEVEL
 0;
 #X obj 212 228 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
+-1 -1 6200 1;
 #X floatatom 12 223 5 0 0 0 - - -, f 5;
 #N canvas 1 56 450 300 synth_state_summ 0;
 #X obj 32 17 r 0-STATE;
@@ -155,9 +155,8 @@ P R S T U V W P Q R \;;
 #X connect 16 0 10 0;
 #X restore 12 202 pd synth_state_summ;
 #X obj 12 241 s SYNTH_SUMM;
-#X obj 12 141 clone 8 synth_gaga 0;
 #X obj 229 228 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
+-1 -1 4000 1;
 #X msg 229 400 \; 2-MIDI \$1;
 #X floatatom 248 345 5 0 0 0 - - -, f 5;
 #X msg 212 366 \; 2-TRANSPOSITION \$1;
@@ -169,8 +168,6 @@ P R S T U V W P Q R \;;
 #X connect 0 0 1 0;
 #X restore 79 9 pd INIT;
 #X obj 12 181 clone 8 synth_moog 2;
-#X msg 395 287 \; 0-SHIFTING -20 \; 0-WINDOW 90 \; 2-TRANSPOSITION
-60 \; 2-MIDI 45;
 #X obj 12 389 freeverb~;
 #N canvas 639 120 613 636 freeverb 0;
 #X msg 25 67 roomsize \$1;
@@ -235,6 +232,9 @@ P R S T U V W P Q R \;;
 #X obj 11 52 osc_input 7771;
 #X msg 395 198 \; 0-SHIFTING 0 \; 0-WINDOW 0 \; 1-TRANSPOSITION 0 \;
 ;
+#X obj 12 141 clone 8 synth_gaga 0;
+#X msg 395 297 \; 0-SHIFTING -7 \; 0-WINDOW 10 \; 2-TRANSPOSITION 60
+\; 2-MIDI 0;
 #X connect 0 0 33 0;
 #X connect 1 0 4 0;
 #X connect 1 0 2 0;
@@ -244,7 +244,7 @@ P R S T U V W P Q R \;;
 #X connect 5 0 1 0;
 #X connect 6 0 7 0;
 #X connect 6 1 7 1;
-#X connect 15 0 61 0;
+#X connect 15 0 59 0;
 #X connect 18 0 15 0;
 #X connect 24 0 40 0;
 #X connect 25 0 32 0;
@@ -252,18 +252,18 @@ P R S T U V W P Q R \;;
 #X connect 29 0 24 0;
 #X connect 30 0 24 0;
 #X connect 31 0 24 0;
-#X connect 33 0 58 0;
-#X connect 33 0 58 1;
-#X connect 34 0 57 0;
-#X connect 35 0 62 0;
+#X connect 33 0 56 0;
+#X connect 33 0 56 1;
+#X connect 34 0 62 0;
+#X connect 35 0 60 0;
 #X connect 36 0 41 0;
 #X connect 37 0 24 0;
+#X connect 44 0 51 0;
 #X connect 44 0 52 0;
-#X connect 44 0 53 0;
 #X connect 45 0 47 0;
 #X connect 46 0 45 0;
-#X connect 49 0 50 0;
-#X connect 49 0 51 0;
-#X connect 58 0 6 0;
-#X connect 58 1 6 1;
-#X connect 60 0 58 0;
+#X connect 48 0 49 0;
+#X connect 48 0 50 0;
+#X connect 56 0 6 0;
+#X connect 56 1 6 1;
+#X connect 58 0 56 0;

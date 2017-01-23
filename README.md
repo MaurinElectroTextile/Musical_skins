@@ -7,6 +7,7 @@
 - Puredata audio software
 - ...
 
-## Docs
+## DOCs
+
 
 ##TODO
