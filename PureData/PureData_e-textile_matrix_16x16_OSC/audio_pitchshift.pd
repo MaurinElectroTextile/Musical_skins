@@ -1,4 +1,4 @@
-#N canvas 202 54 1073 713 10;
+#N canvas 202 54 1073 694 10;
 #X obj 183 518 *~;
 #X obj 406 455 line~;
 #X text 609 136 PITCH SHIFTER;
@@ -60,9 +60,9 @@ goes from one end to the other.;
 #X obj 203 52 inlet;
 #X obj 265 53 inlet;
 #X obj 203 104 nbx 3 10 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 9
--262144 -1 -1 0 256;
+-262144 -1 -1 0 256 0;
 #X obj 203 123 nbx 4 10 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 9
--262144 -1 -1 100 256;
+-262144 -1 -1 0 256 0;
 #X obj 95 668 outlet~;
 #X obj 183 570 vd~ \$0-pit;
 #X obj 452 582 vd~ \$0-pit;
@@ -96,8 +96,8 @@ goes from one end to the other.;
 -191407 0;
 #X obj 317 53 loadbang;
 #X obj 452 75 loadbang;
-#X obj 108 52 r 0-SHIFTING;
-#X obj 108 73 r 0-WINDOW;
+#X obj 108 52 r SHIFTING;
+#X obj 108 73 r WINDOW;
 #X connect 0 0 11 0;
 #X connect 1 0 0 1;
 #X connect 1 0 16 1;

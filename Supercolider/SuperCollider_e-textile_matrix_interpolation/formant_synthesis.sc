@@ -76,7 +76,6 @@ p = Pmono(
 	\sillyChoir,
 	// \note, Pwrand([0, 2, 4, 5, 7, 9], [5, 2, 3, 3, 4, 1].normalizeSum, repeats:inf),
 	\note, Pwrand([8, 4, 3, 1, 2, 3], [5, 2, 3, 3, 4, 1].normalizeSum, repeats:inf),
-
 	\ctranspose, 5,
 	\dur, Pstutter(Prand([1, 2, 4], repeats:inf), Pwrand([1, 0.5, 0.25], [1, 2, 1].normalizeSum, repeats:inf)),
 	\amp, Pbrown(-12, -6, 0.1).dbamp,
