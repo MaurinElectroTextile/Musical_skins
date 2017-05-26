@@ -1,4 +1,4 @@
-#N canvas 418 90 690 549 10;
+#N canvas 514 24 690 549 10;
 #X obj 11 264 catch~ signal;
 #X obj 556 24 f;
 #X obj 584 24 + 1;
@@ -66,14 +66,14 @@
 #X connect 5 0 1 0;
 #X connect 6 0 2 0;
 #X connect 6 0 5 1;
-#X restore 241 71 pd mode;
+#X restore 248 71 pd mode;
 #X msg 12 96 read ./medias/labdomaMapping.txt;
 #X obj 12 75 loadbang;
 #X obj 398 5 hsl 100 15 0 500 0 0 TEMPO SLIDER_TEMPO tempo 5 7 0 10
 -4034 -1 -1 7920 0;
 #X floatatom 506 4 5 0 0 0 - TEMPO 1-TEMPO, f 5;
-#X msg 272 32 1;
-#X msg 242 32 0;
+#X msg 278 32 1;
+#X msg 248 32 0;
 #X obj 12 117 text define -k mapping;
 #A set Z R V R T V P R S T U V W P Q R \; R R V R T V P R S T U V W
 P Q R \; V V R V P R P V W P Q R S T U V \; R R V R T V P R S T U V
@@ -84,7 +84,7 @@ R S T U V W P \; W W S W Q S U W P Q R S T U V W \; V V R V P R T V
 W P Q R S T U V \; U U Q U P Q S U V W P Q R S T U \; T T P T V P R
 T U V W P Q R S T \; S S W S U W Q S T U V W P Q R S \; R R V R T V
 P R S T U V W P Q R \;;
-#X obj 315 226 r 0-PARAMETERS;
+#X obj 300 226 r 0-PARAMETERS;
 #X obj 407 226 r 1-PARAMETERS;
 #X msg 556 71 \; 1-MATERIALS \$1;
 #X floatatom 12 223 5 0 0 0 - - -, f 5;
@@ -194,14 +194,11 @@ P R S T U V W P Q R \;;
 #X obj 74 351 r CONTROL;
 #X obj 11 52 osc_input 7771;
 #X obj 11 287 audio_pitchshift;
-#X msg 240 92 \; \$1-SYNTH_ON_OFF \$2 \; \$1-PARAMETERS bang \;;
-#X obj 12 148 clone synth_gaga 8 0;
-#X msg 315 249 \; SHIFTING 0 \; WINDOW 0 \;;
-#X obj 231 426 s carrier;
+#X msg 247 92 \; \$1-SYNTH_ON_OFF \$2 \; \$1-PARAMETERS bang \;;
+#X obj 224 426 s carrier;
 #X obj 295 426 s modulation;
-#X floatatom 231 407 5 0 0 0 - - -, f 5;
+#X floatatom 224 407 5 0 0 0 - - -, f 5;
 #X floatatom 295 407 5 0 0 0 - - -, f 5;
-#X obj 12 169 clone synth_xylo 8 1;
 #N canvas 753 124 581 564 arrays 0;
 #N canvas 433 184 450 300 (subpatch) 0;
 #X array 0-pitchmod 131 float 1 black black;
@@ -380,8 +377,8 @@ P R S T U V W P Q R \;;
 -0.721847;
 #X coords 0 1.02 130 -1.02 258 130 1;
 #X restore 295 311 graph;
-#X restore 231 450 pd arrays;
-#X msg 231 386 500;
+#X restore 224 450 pd arrays;
+#X msg 224 386 500;
 #X msg 295 386 450;
 #X obj 556 135 f;
 #X obj 584 135 + 1;
@@ -390,9 +387,13 @@ P R S T U V W P Q R \;;
 -1;
 #X obj 556 183 s shapre_array;
 #X obj 614 135 % 8;
-#X msg 407 250 \; SHIFTING 2 \; WINDOW 60 \; SLIDER_TEMPO 400 \; 1-MATERIALS
+#X msg 300 249 \; SHIFTING 0 \; WINDOW 0 \; volume 182;
+#X obj 12 148 clone synth_gaga 8 0;
+#X obj 12 169 clone synth_xylo 8 1;
+#X msg 408 251 \; SHIFTING 2 \; WINDOW 60 \; SLIDER_TEMPO 400 \; 1-MATERIALS
 1 \; _ATTACK 2 \; _DECAY 60 \; _SUSTAIN 170 \; _RELEASE 500 \; _ATTACK-LEVEL
-0.4 \; _SUSTAIN-LEVEL 0.12 \; carrier 500 \; modulation 450;
+0.4 \; _SUSTAIN-LEVEL 0.12 \; carrier 500 \; modulation 450 \; volume
+192;
 #X connect 0 0 40 0;
 #X connect 1 0 4 0;
 #X connect 1 0 2 0;
@@ -409,7 +410,7 @@ P R S T U V W P Q R \;;
 #X connect 24 0 23 0;
 #X connect 27 0 22 0;
 #X connect 28 0 22 0;
-#X connect 30 0 43 0;
+#X connect 30 0 55 0;
 #X connect 31 0 58 0;
 #X connect 33 0 35 0;
 #X connect 34 0 33 0;
@@ -418,13 +419,13 @@ P R S T U V W P Q R \;;
 #X connect 38 0 36 0;
 #X connect 40 0 36 0;
 #X connect 40 0 36 1;
-#X connect 46 0 44 0;
-#X connect 47 0 45 0;
-#X connect 50 0 46 0;
-#X connect 51 0 47 0;
-#X connect 52 0 54 0;
-#X connect 52 0 53 0;
-#X connect 52 0 56 0;
-#X connect 53 0 57 0;
-#X connect 55 0 52 0;
-#X connect 57 0 52 1;
+#X connect 44 0 42 0;
+#X connect 45 0 43 0;
+#X connect 47 0 44 0;
+#X connect 48 0 45 0;
+#X connect 49 0 51 0;
+#X connect 49 0 50 0;
+#X connect 49 0 53 0;
+#X connect 50 0 54 0;
+#X connect 52 0 49 0;
+#X connect 54 0 49 1;

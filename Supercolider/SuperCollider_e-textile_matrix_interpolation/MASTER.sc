@@ -26,11 +26,11 @@ p = OSCFunc(
 			// $0 : blob ID
 			// $1 : blob posX
 			// $2 : blob posY
-			// $3 : blob perimeter
-			// $4 : blob posZ
+			// $3 : blob posZ
+			// $4 : blob perimeter
 
 		if ( packet[4] > 0 ,{
-			//packet.postln;
+			packet.postln;
 			posX = packet[1]/4; // 0-63 to 0-15
 			posY = packet[2]/4;
 
@@ -38,7 +38,7 @@ p = OSCFunc(
 			o.wrapAt(packet[0]).set(
 					\vowel, a[posX, posY],
 					\note, b[posX, posY],
-					\amp, packet[4]/255,
+					\amp, packet[3]/255,
 					\vibratoSpeed, Pwhite(4, 5));
 			}, {
 			////////// OFF
